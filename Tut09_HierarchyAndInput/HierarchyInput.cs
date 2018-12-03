@@ -20,13 +20,15 @@ namespace Fusee.Tutorial.Core
         private SceneRenderer _sceneRenderer;
         private float _camAngleVert = 0;
         private float _camAngleHor = 0;
+
+        private float _camAngleVelHor, _camAngleVelVert;
         private TransformComponent _baseTransform;
         private TransformComponent _bodyTransform;
         private TransformComponent _upperArmTransform;
         private TransformComponent _foreArmTransform;
         private const float Damping = 0.8f;
 
-        private float i;
+        private float Rotate = 7;
 
         SceneContainer CreateScene()
         {
@@ -195,14 +197,16 @@ namespace Fusee.Tutorial.Core
 
              // Animate the camera angle
              if (Mouse.LeftButton == true){
-            _camAngleVert = _camAngleVert + (Mouse.XVel/2) * M.Pi/180.0f * DeltaTime;
-            _camAngleHor = _camAngleHor + (Mouse.YVel/2) * M.Pi/180.0f * DeltaTime;
+            _camAngleVelVert = -Rotate * Mouse.XVel * DeltaTime * 0.0005f;
+            _camAngleVelHor = -Rotate * Mouse.YVel * DeltaTime * 0.0005f;
              }
            
             var curDamp = (float)System.Math.Exp(-Damping * DeltaTime);
-                    _camAngleVert *= curDamp;
-                    _camAngleHor *= curDamp;
+                    _camAngleVelVert *= curDamp;
+                    _camAngleVelHor *= curDamp;
 
+            _camAngleHor += _camAngleVelHor;
+            _camAngleVert += _camAngleVelVert;
             // Setup the camera 
             RC.View = float4x4.CreateTranslation(0, -10, 50) * float4x4.CreateRotationY(_camAngleVert) * float4x4.CreateRotationX(_camAngleHor);
 
