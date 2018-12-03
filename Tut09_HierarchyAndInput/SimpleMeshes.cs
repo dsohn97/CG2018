@@ -152,6 +152,23 @@ namespace Fusee.Tutorial.Core
         {
             throw new NotImplementedException();
         }
+        public static ShaderEffect MakeShaderEffect(float3 diffuseColor, float3 specularColor, float shininess)
+        {
+            MaterialComponent temp = new MaterialComponent
+            {
+                Diffuse = new MatChannelContainer
+                {
+                    Color = diffuseColor
+                },
+                Specular = new SpecularChannelContainer
+                {
+                    Color = specularColor,
+                    Shininess = shininess
+                }
+            };
+
+            return ShaderCodeBuilder.MakeShaderEffectFromMatComp(temp);
+        }
 
     }
 }
