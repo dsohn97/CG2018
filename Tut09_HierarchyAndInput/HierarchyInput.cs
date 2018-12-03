@@ -24,6 +24,8 @@ namespace Fusee.Tutorial.Core
         private TransformComponent _upperArmTransform;
         private TransformComponent _foreArmTransform;
 
+        private float i;
+
         SceneContainer CreateScene()
         {
             // Initialize transform components that need to be changed inside "RenderAFrame"
@@ -167,12 +169,11 @@ namespace Fusee.Tutorial.Core
         public override void RenderAFrame()
         {
             float speed = 33; 
-            if (Keyboard.GetKey(Up))
-            {
+            // Q als Speed control
+            if (Keyboard.GetButton(81) == true )
             speed = speed * 2; 
-            }
             float bodyRot = _bodyTransform.Rotation.y;
-            bodyRot += 0.01f * Keyboard.ADAxis * DeltaTime * speed;
+            bodyRot += 0.1f * Keyboard.ADAxis * DeltaTime * speed;
 
 
            
@@ -191,8 +192,15 @@ namespace Fusee.Tutorial.Core
             RC.Clear(ClearFlags.Color | ClearFlags.Depth);
 
              // Animate the camera angle
-             if (Mouse.LeftButton == true)
+             if (Mouse.LeftButton == true){
             _camAngle = _camAngle + Mouse.XVel * M.Pi/180.0f * DeltaTime;
+            if (Mouse.LeftButton == false)
+            i = Mouse.XVel;
+            }
+            if (i < 0 || i > 0){
+            _camAngle = _camAngle + i * M.Pi/180.0f * DeltaTime;
+            i = i - 0.1f;
+            }
             
           
 
