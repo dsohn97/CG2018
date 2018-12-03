@@ -25,10 +25,14 @@ namespace Fusee.Tutorial.Core
         private TransformComponent _bodyTransform;
         private TransformComponent _upperArmTransform;
         private TransformComponent _foreArmTransform;
+        private TransformComponent _clawLeftTransform;
+        private TransformComponent _clawRightTransform;
         private const float Damping = 0.8f;
         private float Rotate = 7;
+        private float _leftClaw = -0.1f; 
+        private float _rightClaw = 0.1f;
 
-            SceneContainer CreateScene()
+        SceneContainer CreateScene()
             {
                 // Initialize transform components that need to be changed inside "RenderAFrame"
                 _baseTransform = new TransformComponent
@@ -54,6 +58,19 @@ namespace Fusee.Tutorial.Core
                     Rotation = new float3(0.8f, 0, 0),
                     Scale = new float3(1, 1, 1),
                     Translation = new float3(-2, 8, 0)
+                };
+                
+                _clawLeftTransform = new TransformComponent
+                {
+                    Rotation = new float3(0, 0, _leftClaw),
+                    Scale = new float3(0.3f, 0.5f, 0.5f),
+                    Translation = new float3(0.75f, 9, 0)
+                };
+                _clawRightTransform = new TransformComponent
+                {
+                    Rotation = new float3(0, 0, _rightClaw),
+                    Scale = new float3(0.3f, 0.5f, 0.5f),
+                    Translation = new float3(-0.75f, 9, 0)
                 };
 
                     // Setup the scene graph
@@ -144,7 +161,65 @@ namespace Fusee.Tutorial.Core
                                                                 },
                                                                 SimpleMeshes.CreateCuboid(new float3(2, 10, 2))
                                                             }
-                                                        }   
+                                                        },
+                                                            // Claw left
+                                                            new SceneNodeContainer
+                                                            {
+                                                            Components = new List<SceneComponentContainer>
+                                                            {
+                                                                _clawLeftTransform,
+                                                            },
+                                                            Children = new List<SceneNodeContainer>
+                                                            {
+                                                                new SceneNodeContainer
+                                                                {
+                                                                    Components = new List<SceneComponentContainer>
+                                                                    {
+                                                                        new TransformComponent
+                                                                        {
+                                                                            Rotation = new float3(0, 0, 0),
+                                                                            Scale = new float3(1, 1, 1),
+                                                                            Translation = new float3(0, 4, 0)
+                                                                        },
+                                                                        new ShaderEffectComponent
+                                                                        {
+                                                                            Effect = SimpleMeshes.MakeShaderEffect(new float3(0.3f, 0.3f, 1), new float3(0.7f, 0.7f, 0.7f), 5)
+                                                                        },
+                                                                        SimpleMeshes.CreateCuboid(new float3(2, 10, 2))
+                                                                            }
+                                                                    },
+                                                            }
+                                                            },
+                                                                        // Claw right
+                                                                        new SceneNodeContainer
+                                                                        {
+                                                                        Components = new List<SceneComponentContainer>
+                                                                        {
+                                                                            _clawRightTransform,
+                                                                        },
+                                                                        Children = new List<SceneNodeContainer>
+                                                                        {
+                                                                            new SceneNodeContainer
+                                                                            {
+                                                                                Components = new List<SceneComponentContainer>
+                                                                                {
+                                                                                    new TransformComponent
+                                                                                    {
+                                                                                        Rotation = new float3(0, 0, 0),
+                                                                                        Scale = new float3(1, 1, 1),
+                                                                                        Translation = new float3(0, 4, 0)
+                                                                                    },
+                                                                                    new ShaderEffectComponent
+                                                                                    {
+                                                                                        Effect = SimpleMeshes.MakeShaderEffect(new float3(0.3f, 0.3f, 1), new float3(0.7f, 0.7f, 0.7f), 5)
+                                                                                    },
+                                                                            SimpleMeshes.CreateCuboid(new float3(2, 10, 2))
+                                                                                }
+                                                                        }
+                                                                    }
+                                                                }  
+                                                            
+                                                          
                                                     }
                                                 }
                                             }
@@ -182,12 +257,17 @@ namespace Fusee.Tutorial.Core
             
             _bodyTransform.Rotation = new float3(0, bodyRot, 0);
             float upperArm = _upperArmTransform.Rotation.x;
-            upperArm += 0.1f * (Keyboard.WSAxis + Keyboard.UpDownAxis) * DeltaTime * speed;
+            upperArm += 0.1f * (Keyboard.WSAxis) * DeltaTime * speed;
             _upperArmTransform.Rotation = new float3(upperArm, 0, 0);
 
             float foreArm = _foreArmTransform.Rotation.x;
             foreArm += 0.1f * (Keyboard.LeftRightAxis) * DeltaTime * speed;
             _foreArmTransform.Rotation = new float3(foreArm, 0, 0);
+
+            //Claw
+                _clawLeftTransform.Rotation = new float3(0, 0, 0.2f * Keyboard.UpDownAxis * DeltaTime * speed);
+                _clawRightTransform.Rotation = new float3(0, 0, 0.2f * -Keyboard.UpDownAxis * DeltaTime * speed);
+              
 
 
             // Clear the backbuffer
@@ -196,14 +276,14 @@ namespace Fusee.Tutorial.Core
              // Animate the camera angle
              if (Mouse.LeftButton == true){
             _camAngleVelVert = -Rotate * Mouse.XVel * DeltaTime * 0.0005f;
-            _camAngleVelHor = -Rotate * Mouse.YVel * DeltaTime * 0.0005f;
+            //_camAngleVelHor = -Rotate * Mouse.YVel * DeltaTime * 0.0005f;
              }
            
             var curDamp = (float)System.Math.Exp(-Damping * DeltaTime);
                     _camAngleVelVert *= curDamp;
-                    _camAngleVelHor *= curDamp;
+                 //   _camAngleVelHor *= curDamp;
 
-            _camAngleHor += _camAngleVelHor;
+           // _camAngleHor += _camAngleVelHor;
             _camAngleVert += _camAngleVelVert;
             // Setup the camera 
             RC.View = float4x4.CreateTranslation(0, -10, 50) * float4x4.CreateRotationY(_camAngleVert) * float4x4.CreateRotationX(_camAngleHor);
