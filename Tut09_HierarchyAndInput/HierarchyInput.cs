@@ -147,6 +147,8 @@ namespace Fusee.Tutorial.Core
                                                     SimpleMeshes.CreateCuboid(new float3(2, 10, 2))
                                                 }
                                             }
+
+                                            
                                         }
                                     }
                                 }
