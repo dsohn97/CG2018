@@ -18,11 +18,13 @@ namespace Fusee.Tutorial.Core
     {
         private SceneContainer _scene;
         private SceneRenderer _sceneRenderer;
-        private float _camAngle = 0;
+        private float _camAngleVert = 0;
+        private float _camAngleHor = 0;
         private TransformComponent _baseTransform;
         private TransformComponent _bodyTransform;
         private TransformComponent _upperArmTransform;
         private TransformComponent _foreArmTransform;
+        private const float Damping = 0.8f;
 
         private float i;
 
@@ -170,7 +172,7 @@ namespace Fusee.Tutorial.Core
         {
             float speed = 33; 
             // Q als Speed control
-            if (Keyboard.GetButton(81) == true )
+            if ( /* Keyboard.GetButton(81*/ Mouse.RightButton == true )
             speed = speed * 2; 
             float bodyRot = _bodyTransform.Rotation.y;
             bodyRot += 0.1f * Keyboard.ADAxis * DeltaTime * speed;
@@ -193,19 +195,16 @@ namespace Fusee.Tutorial.Core
 
              // Animate the camera angle
              if (Mouse.LeftButton == true){
-            _camAngle = _camAngle + Mouse.XVel * M.Pi/180.0f * DeltaTime;
-            if (Mouse.LeftButton == false)
-            i = Mouse.XVel;
-            }
-            if (i < 0 || i > 0){
-            _camAngle = _camAngle + i * M.Pi/180.0f * DeltaTime;
-            i = i - 0.1f;
-            }
-            
-          
+            _camAngleVert = _camAngleVert + (Mouse.XVel/2) * M.Pi/180.0f * DeltaTime;
+            _camAngleHor = _camAngleHor + (Mouse.YVel/2) * M.Pi/180.0f * DeltaTime;
+             }
+           
+            var curDamp = (float)System.Math.Exp(-Damping * DeltaTime);
+                    _camAngleVert *= curDamp;
+                    _camAngleHor *= curDamp;
 
             // Setup the camera 
-            RC.View = float4x4.CreateTranslation(0, -10, 50) * float4x4.CreateRotationY(_camAngle);
+            RC.View = float4x4.CreateTranslation(0, -10, 50) * float4x4.CreateRotationY(_camAngleVert) * float4x4.CreateRotationX(_camAngleHor);
 
             // Render the scene on the current render context
             _sceneRenderer.Render(RC);
