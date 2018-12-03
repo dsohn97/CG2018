@@ -168,15 +168,14 @@ namespace Fusee.Tutorial.Core
         {
             float speed = 33; 
             float bodyRot = _bodyTransform.Rotation.y;
-            bodyRot += 0.1f * Mouse.XVel * DeltaTime * speed;
+            bodyRot += 0.01f * Mouse.XVel * DeltaTime;
             _bodyTransform.Rotation = new float3(0, bodyRot, 0);
-
             float upperArm = _upperArmTransform.Rotation.x;
-            upperArm += 0.1f * Keyboard.UpDownAxis * DeltaTime * speed;
+            upperArm += 0.1f * (Keyboard.WSAxis + Keyboard.UpDownAxis) * DeltaTime * speed;
             _upperArmTransform.Rotation = new float3(upperArm, 0, 0);
 
             float foreArm = _foreArmTransform.Rotation.x;
-            foreArm += 0.1f * Keyboard.LeftRightAxis * DeltaTime;
+            foreArm += 0.1f * (Keyboard.ADAxis + Keyboard.LeftRightAxis) * DeltaTime * speed;
             _foreArmTransform.Rotation = new float3(foreArm, 0, 0);
 
 
