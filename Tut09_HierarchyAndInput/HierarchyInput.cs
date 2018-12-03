@@ -265,9 +265,11 @@ namespace Fusee.Tutorial.Core
             _foreArmTransform.Rotation = new float3(foreArm, 0, 0);
 
             //Claw
-                _clawLeftTransform.Rotation = new float3(0, 0, 0.2f * Keyboard.UpDownAxis * DeltaTime * speed);
-                _clawRightTransform.Rotation = new float3(0, 0, 0.2f * -Keyboard.UpDownAxis * DeltaTime * speed);
-              
+            var i = 0.2f;
+            if (_clawLeftTransform.Rotation.z >= 0.1f)
+                i = 0;
+                _clawLeftTransform.Rotation = new float3(0, 0, i * Keyboard.UpDownAxis * 0.015f * speed); 
+                _clawRightTransform.Rotation = new float3(0, 0, i * -Keyboard.UpDownAxis * 0.015f * speed);
 
 
             // Clear the backbuffer
