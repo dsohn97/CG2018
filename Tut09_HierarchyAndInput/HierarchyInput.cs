@@ -20,144 +20,140 @@ namespace Fusee.Tutorial.Core
         private SceneRenderer _sceneRenderer;
         private float _camAngleVert = 0;
         private float _camAngleHor = 0;
-
         private float _camAngleVelHor, _camAngleVelVert;
         private TransformComponent _baseTransform;
         private TransformComponent _bodyTransform;
         private TransformComponent _upperArmTransform;
         private TransformComponent _foreArmTransform;
         private const float Damping = 0.8f;
-
         private float Rotate = 7;
 
-        SceneContainer CreateScene()
-        {
-            // Initialize transform components that need to be changed inside "RenderAFrame"
-            _baseTransform = new TransformComponent
+            SceneContainer CreateScene()
             {
-                Rotation = new float3(0, 0, 0),
-                Scale = new float3(1, 1, 1),
-                Translation = new float3(0, 0, 0)
-            };
-            _bodyTransform = new TransformComponent
-            {
-                Rotation = new float3(0, 1.2f, 0),
-                Scale = new float3(1, 1, 1),
-                Translation = new float3(0, 6, 0)
-            };
-            _upperArmTransform = new TransformComponent
-            {
-                Rotation = new float3(0.8f, 0, 0),
-                Scale = new float3(1, 1, 1),
-                Translation = new float3(2, 4, 0)
-            };
-            _foreArmTransform = new TransformComponent
-            {
-                Rotation = new float3(0.8f, 0, 0),
-                Scale = new float3(1, 1, 1),
-                Translation = new float3(-2, 8, 0)
-            };
-
-            // Setup the scene graph
-            return new SceneContainer
-            {
-                Children = new List<SceneNodeContainer>
+                // Initialize transform components that need to be changed inside "RenderAFrame"
+                _baseTransform = new TransformComponent
                 {
-                    // GREY BASE
-                    new SceneNodeContainer
-                    {
-                        Components = new List<SceneComponentContainer>
-                        {
-                            // TRANSFROM COMPONENT
-                            _baseTransform,
+                    Rotation = new float3(0, 0, 0),
+                    Scale = new float3(1, 1, 1),
+                    Translation = new float3(0, 0, 0)
+                };
+                _bodyTransform = new TransformComponent
+                {
+                    Rotation = new float3(0, 1.2f, 0),
+                    Scale = new float3(1, 1, 1),
+                    Translation = new float3(0, 6, 0)
+                };
+                _upperArmTransform = new TransformComponent
+                {
+                    Rotation = new float3(0.8f, 0, 0),
+                    Scale = new float3(1, 1, 1),
+                    Translation = new float3(2, 4, 0)
+                };
+                _foreArmTransform = new TransformComponent
+                {
+                    Rotation = new float3(0.8f, 0, 0),
+                    Scale = new float3(1, 1, 1),
+                    Translation = new float3(-2, 8, 0)
+                };
 
-                            // MATERIAL COMPONENT
-                            new ShaderEffectComponent
-                            {
-                            Effect = SimpleMeshes.MakeShaderEffect(new float3(0.7f, 0.7f, 0.7f), new float3(0.7f, 0.7f, 0.7f), 5)
-                            },
-
-                            // MESH COMPONENT
-                            SimpleMeshes.CreateCuboid(new float3(10, 2, 10))
-                        }
-                    },
-                    // RED BODY
-                    new SceneNodeContainer
+                    // Setup the scene graph
+                    return new SceneContainer
                     {
-                        Components = new List<SceneComponentContainer>
-                        {
-                            _bodyTransform,
-                            new ShaderEffectComponent
-                            {
-                            Effect = SimpleMeshes.MakeShaderEffect(new float3(1, 0.3f, 0.3f), new float3(0.7f, 0.7f, 0.7f), 5)
-                            },
-                            SimpleMeshes.CreateCuboid(new float3(2, 10, 2))
-                        },
                         Children = new List<SceneNodeContainer>
                         {
-                            // GREEN UPPER ARM
+                            // GREY BASE
                             new SceneNodeContainer
                             {
                                 Components = new List<SceneComponentContainer>
                                 {
-                                    _upperArmTransform,
-                                },
-                                Children = new List<SceneNodeContainer>
-                                {
-                                    new SceneNodeContainer
-                                    {
-                                        Components = new List<SceneComponentContainer>
-                                        {
-                                            new TransformComponent
-                                            {
-                                                Rotation = new float3(0, 0, 0),
-                                                Scale = new float3(1, 1, 1),
-                                                Translation = new float3(0, 4, 0)
-                                            },
-                                            new ShaderEffectComponent
-                                            {
-                                                Effect = SimpleMeshes.MakeShaderEffect(new float3(0.3f, 1, 0.3f), new float3(0.7f, 0.7f, 0.7f), 5)
-                                            },
-                                            SimpleMeshes.CreateCuboid(new float3(2, 10, 2))
-                                        }
-                                    },
-                                    // BLUE FOREARM
-                                    new SceneNodeContainer
-                                    {
-                                        Components = new List<SceneComponentContainer>
-                                        {
-                                            _foreArmTransform,
-                                        },
-                                        Children = new List<SceneNodeContainer>
-                                        {
-                                            new SceneNodeContainer
-                                            {
-                                                Components = new List<SceneComponentContainer>
-                                                {
-                                                    new TransformComponent
-                                                    {
-                                                        Rotation = new float3(0, 0, 0),
-                                                        Scale = new float3(1, 1, 1),
-                                                        Translation = new float3(0, 4, 0)
-                                                    },
-                                                    new ShaderEffectComponent
-                                                    {
-                                                        Effect = SimpleMeshes.MakeShaderEffect(new float3(0.3f, 0.3f, 1), new float3(0.7f, 0.7f, 0.7f), 5)
-                                                    },
-                                                    SimpleMeshes.CreateCuboid(new float3(2, 10, 2))
-                                                }
-                                            }
+                                    // TRANSFROM COMPONENT
+                                    _baseTransform,
 
-                                            
-                                        }
-                                    }
+                                    // MATERIAL COMPONENT
+                                    new ShaderEffectComponent
+                                    {
+                                    Effect = SimpleMeshes.MakeShaderEffect(new float3(0.7f, 0.7f, 0.7f), new float3(0.7f, 0.7f, 0.7f), 5)
+                                    },
+
+                                    // MESH COMPONENT
+                                    SimpleMeshes.CreateCuboid(new float3(10, 2, 10))
                                 }
                             },
-                        }
+                                // RED BODY
+                                new SceneNodeContainer
+                                {
+                                    Components = new List<SceneComponentContainer>
+                                    {
+                                        _bodyTransform,
+                                        new ShaderEffectComponent
+                                        {
+                                            Effect = SimpleMeshes.MakeShaderEffect(new float3(1, 0.3f, 0.3f), new float3(0.7f, 0.7f, 0.7f), 5)
+                                        },
+                                        SimpleMeshes.CreateCuboid(new float3(2, 10, 2))
+                                    },
+                                    Children = new List<SceneNodeContainer>
+                                    {
+                                    // GREEN UPPER ARM
+                                    new SceneNodeContainer
+                                        {
+                                            Components = new List<SceneComponentContainer>
+                                            {
+                                                _upperArmTransform,
+                                            },
+                                            Children = new List<SceneNodeContainer>
+                                            {
+                                                new SceneNodeContainer
+                                                {
+                                                    Components = new List<SceneComponentContainer>
+                                                    {
+                                                        new TransformComponent
+                                                        {
+                                                            Rotation = new float3(0, 0, 0),
+                                                            Scale = new float3(1, 1, 1),
+                                                            Translation = new float3(0, 4, 0)
+                                                        },
+                                                        new ShaderEffectComponent
+                                                        {
+                                                            Effect = SimpleMeshes.MakeShaderEffect(new float3(0.3f, 1, 0.3f), new float3(0.7f, 0.7f, 0.7f), 5)
+                                                        },
+                                                        SimpleMeshes.CreateCuboid(new float3(2, 10, 2))
+                                                    }
+                                                },
+                                                    // BLUE FOREARM
+                                                    new SceneNodeContainer
+                                                    {
+                                                    Components = new List<SceneComponentContainer>
+                                                    {
+                                                        _foreArmTransform,
+                                                    },
+                                                    Children = new List<SceneNodeContainer>
+                                                    {
+                                                        new SceneNodeContainer
+                                                        {
+                                                            Components = new List<SceneComponentContainer>
+                                                            {
+                                                                new TransformComponent
+                                                                {
+                                                                    Rotation = new float3(0, 0, 0),
+                                                                    Scale = new float3(1, 1, 1),
+                                                                    Translation = new float3(0, 4, 0)
+                                                                },
+                                                                new ShaderEffectComponent
+                                                                {
+                                                                    Effect = SimpleMeshes.MakeShaderEffect(new float3(0.3f, 0.3f, 1), new float3(0.7f, 0.7f, 0.7f), 5)
+                                                                },
+                                                                SimpleMeshes.CreateCuboid(new float3(2, 10, 2))
+                                                            }
+                                                        }   
+                                                    }
+                                                }
+                                            }
+                                        },
+                                    }
+                                }
+                            }
+                        };
                     }
-                }
-            };
-        }
 
         // Init is called on startup. 
         public override void Init()
