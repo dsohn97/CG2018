@@ -167,7 +167,7 @@ namespace Fusee.Tutorial.Core
         public override void RenderAFrame()
         {
             float speed = 33; 
-            if ( Keyboard.y == true)
+            if ( Keyboard == true)
             speed = speed * 2; 
             float bodyRot = _bodyTransform.Rotation.y;
             bodyRot += 0.01f * Keyboard.ADAxis * DeltaTime * speed;
