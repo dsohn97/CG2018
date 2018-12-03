@@ -167,9 +167,12 @@ namespace Fusee.Tutorial.Core
         public override void RenderAFrame()
         {
             float speed = 33; 
+            if ( Keyboard.y == true)
             speed = speed * 2; 
             float bodyRot = _bodyTransform.Rotation.y;
             bodyRot += 0.01f * Keyboard.ADAxis * DeltaTime * speed;
+
+
            
             
             _bodyTransform.Rotation = new float3(0, bodyRot, 0);
@@ -184,6 +187,10 @@ namespace Fusee.Tutorial.Core
 
             // Clear the backbuffer
             RC.Clear(ClearFlags.Color | ClearFlags.Depth);
+
+             // Animate the camera angle
+             if (Mouse.LeftButton == true)
+            _camAngle = _camAngle + Mouse.XVel * M.Pi/180.0f * DeltaTime;
 
             // Setup the camera 
             RC.View = float4x4.CreateTranslation(0, -10, 50) * float4x4.CreateRotationY(_camAngle);
