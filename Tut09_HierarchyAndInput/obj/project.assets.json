@@ -49,6 +49,7 @@
       "type": "package",
       "path": "netstandard.library/2.0.3",
       "files": [
+        ".nupkg.metadata",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
         "build/netstandard2.0/NETStandard.Library.targets",
@@ -184,11 +185,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "I:\\Dokumente\\CG\\RTRFusee\\CG2018\\Tut08_FirstSteps\\Tut08_FirstSteps.csproj",
-      "projectName": "Tut08_FirstSteps",
-      "projectPath": "I:\\Dokumente\\CG\\RTRFusee\\CG2018\\Tut08_FirstSteps\\Tut08_FirstSteps.csproj",
+      "projectUniqueName": "I:\\Dokumente\\CG\\RTRFusee\\CG2018\\Tut09_HierarchyAndInput\\Tut09_HierarchyAndInput.csproj",
+      "projectName": "Tut09_HierarchyAndInput",
+      "projectPath": "I:\\Dokumente\\CG\\RTRFusee\\CG2018\\Tut09_HierarchyAndInput\\Tut09_HierarchyAndInput.csproj",
       "packagesPath": "C:\\Users\\Daniel\\.nuget\\packages\\",
-      "outputPath": "I:\\Dokumente\\CG\\RTRFusee\\CG2018\\Tut08_FirstSteps\\obj\\",
+      "outputPath": "I:\\Dokumente\\CG\\RTRFusee\\CG2018\\Tut09_HierarchyAndInput\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

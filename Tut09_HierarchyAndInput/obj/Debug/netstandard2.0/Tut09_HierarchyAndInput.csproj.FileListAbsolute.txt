@@ -1,0 +1,10 @@
+I:\Dokumente\CG\RTRFusee\CG2018\Tut09_HierarchyAndInput\bin\Debug\netstandard2.0\Assets\AboutFuseeAssets.txt
+I:\Dokumente\CG\RTRFusee\CG2018\Tut09_HierarchyAndInput\bin\Debug\netstandard2.0\Tut09_HierarchyAndInput.deps.json
+I:\Dokumente\CG\RTRFusee\CG2018\Tut09_HierarchyAndInput\bin\Debug\netstandard2.0\Tut09_HierarchyAndInput.dll
+I:\Dokumente\CG\RTRFusee\CG2018\Tut09_HierarchyAndInput\bin\Debug\netstandard2.0\Tut09_HierarchyAndInput.pdb
+I:\Dokumente\CG\RTRFusee\CG2018\Tut09_HierarchyAndInput\obj\Debug\netstandard2.0\Tut09_HierarchyAndInput.csprojAssemblyReference.cache
+I:\Dokumente\CG\RTRFusee\CG2018\Tut09_HierarchyAndInput\obj\Debug\netstandard2.0\Tut09_HierarchyAndInput.csproj.CoreCompileInputs.cache
+I:\Dokumente\CG\RTRFusee\CG2018\Tut09_HierarchyAndInput\obj\Debug\netstandard2.0\Tut09_HierarchyAndInput.AssemblyInfoInputs.cache
+I:\Dokumente\CG\RTRFusee\CG2018\Tut09_HierarchyAndInput\obj\Debug\netstandard2.0\Tut09_HierarchyAndInput.AssemblyInfo.cs
+I:\Dokumente\CG\RTRFusee\CG2018\Tut09_HierarchyAndInput\obj\Debug\netstandard2.0\Tut09_HierarchyAndInput.dll
+I:\Dokumente\CG\RTRFusee\CG2018\Tut09_HierarchyAndInput\obj\Debug\netstandard2.0\Tut09_HierarchyAndInput.pdb
