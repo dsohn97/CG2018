@@ -268,10 +268,9 @@ namespace Fusee.Tutorial.Core
             var i = 0.2f;
             if (_clawLeftTransform.Rotation.z >= 0.1f)
                 i = 0;
+
                 _clawLeftTransform.Rotation = new float3(0, 0, i * Keyboard.UpDownAxis * 0.015f * speed); 
                 _clawRightTransform.Rotation = new float3(0, 0, i * -Keyboard.UpDownAxis * 0.015f * speed);
-
-
             // Clear the backbuffer
             RC.Clear(ClearFlags.Color | ClearFlags.Depth);
 
@@ -281,14 +280,15 @@ namespace Fusee.Tutorial.Core
             if (Mouse.RightButton == true)
             _camAngleVelHor = -Rotate * Mouse.YVel * DeltaTime * 0.0005f;
            
-            var curDamp = (float)System.Math.Exp(-Damping * DeltaTime);
-                    _camAngleVelVert *= curDamp;
-                    _camAngleVelHor *= curDamp;
+            var slowDamp = (float)System.Math.Exp(-Damping * DeltaTime);
+                    _camAngleVelVert *= slowDamp;
+                    _camAngleVelHor *= slowDamp;
 
             _camAngleHor += _camAngleVelHor;
             _camAngleVert += _camAngleVelVert;
             // Setup the camera 
-            RC.View = float4x4.CreateTranslation(0, -10, 50) * float4x4.CreateRotationY(_camAngleVert) * float4x4.CreateRotationX(_camAngleHor);
+            var rot =  float4x4.CreateRotationX(_camAngleHor) * float4x4.CreateRotationY(_camAngleVert);            var pos =float4x4.CreateTranslation(0, -10, 50);
+            RC.View = pos * rot;
 
             // Render the scene on the current render context
             _sceneRenderer.Render(RC);
