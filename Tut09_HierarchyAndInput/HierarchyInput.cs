@@ -247,7 +247,7 @@ namespace Fusee.Tutorial.Core
         {
             float speed = 33; 
             // Q als Speed control
-            if ( /* Keyboard.GetButton(81*/ Mouse.RightButton == true )
+            if (  Keyboard.GetButton(81) /* Mouse.RightButton == true*/ )
             speed = speed * 2; 
             float bodyRot = _bodyTransform.Rotation.y;
             bodyRot += 0.1f * Keyboard.ADAxis * DeltaTime * speed;
@@ -276,16 +276,16 @@ namespace Fusee.Tutorial.Core
             RC.Clear(ClearFlags.Color | ClearFlags.Depth);
 
              // Animate the camera angle
-             if (Mouse.LeftButton == true){
+             if (Mouse.LeftButton == true)
             _camAngleVelVert = -Rotate * Mouse.XVel * DeltaTime * 0.0005f;
-            //_camAngleVelHor = -Rotate * Mouse.YVel * DeltaTime * 0.0005f;
-             }
+            if (Mouse.RightButton == true)
+            _camAngleVelHor = -Rotate * Mouse.YVel * DeltaTime * 0.0005f;
            
             var curDamp = (float)System.Math.Exp(-Damping * DeltaTime);
                     _camAngleVelVert *= curDamp;
-                 //   _camAngleVelHor *= curDamp;
+                    _camAngleVelHor *= curDamp;
 
-           // _camAngleHor += _camAngleVelHor;
+            _camAngleHor += _camAngleVelHor;
             _camAngleVert += _camAngleVelVert;
             // Setup the camera 
             RC.View = float4x4.CreateTranslation(0, -10, 50) * float4x4.CreateRotationY(_camAngleVert) * float4x4.CreateRotationX(_camAngleHor);

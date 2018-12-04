@@ -52,7 +52,7 @@ JSIL.DeclareNamespace("Fusee.Tutorial.Core");
     return ($T0D = JSIL.Memoize($asm0F.System.Boolean)) ();
   };
   var $T0E = function () {
-    return ($T0E = JSIL.Memoize($asm04.Fusee.Engine.Core.MouseDevice)) ();
+    return ($T0E = JSIL.Memoize($asm04.Fusee.Engine.Core.InputDevice)) ();
   };
   var $T0F = function () {
     return ($T0F = JSIL.Memoize($asm04.Fusee.Engine.Core.Input)) ();
@@ -67,10 +67,13 @@ JSIL.DeclareNamespace("Fusee.Tutorial.Core");
     return ($T12 = JSIL.Memoize($asm03.Fusee.Engine.Common.ClearFlags)) ();
   };
   var $T13 = function () {
-    return ($T13 = JSIL.Memoize($asm0F.System.Math)) ();
+    return ($T13 = JSIL.Memoize($asm04.Fusee.Engine.Core.MouseDevice)) ();
   };
   var $T14 = function () {
-    return ($T14 = JSIL.Memoize($asm0A.Fusee.Math.Core.float4x4)) ();
+    return ($T14 = JSIL.Memoize($asm0F.System.Math)) ();
+  };
+  var $T15 = function () {
+    return ($T15 = JSIL.Memoize($asm0A.Fusee.Math.Core.float4x4)) ();
   };
   var $S00 = function () {
     return ($S00 = JSIL.Memoize(new JSIL.ConstructorSignature($asm0A.Fusee.Math.Core.float3, [
@@ -252,8 +255,8 @@ JSIL.DeclareNamespace("Fusee.Tutorial.Core");
 
   function HierarchyInput_RenderAFrame () {
     var num = 33;
-    var rightButton = $T0F().get_Mouse().get_RightButton();
-    if (rightButton) {
+    var button = $T0F().get_Keyboard().GetButton(81);
+    if (button) {
       num *= 2;
     }
     var num2 = +this._bodyTransform.Rotation.y;
@@ -276,15 +279,21 @@ JSIL.DeclareNamespace("Fusee.Tutorial.Core");
     if (leftButton) {
       this._camAngleVelVert = ((-this.Rotate * +$T0F().get_Mouse().get_XVel()) * +$T11().get_DeltaTime()) * 0.0005;
     }
-    var num6 = Math.fround($T13().Exp(-0.8 * +$T11().get_DeltaTime()));
+    var rightButton = $T0F().get_Mouse().get_RightButton();
+    if (rightButton) {
+      this._camAngleVelHor = ((-this.Rotate * +$T0F().get_Mouse().get_YVel()) * +$T11().get_DeltaTime()) * 0.0005;
+    }
+    var num6 = Math.fround($T14().Exp(-0.8 * +$T11().get_DeltaTime()));
     this._camAngleVelVert = +this._camAngleVelVert * num6;
+    this._camAngleVelHor = +this._camAngleVelHor * num6;
+    this._camAngleHor = +this._camAngleHor + +this._camAngleVelHor;
     this._camAngleVert = +this._camAngleVert + +this._camAngleVelVert;
-    (this.RenderCanvas$RC$value.View = $S05().CallStatic($T14(), "op_Multiply", null, 
-        $S05().CallStatic($T14(), "op_Multiply", null, 
-          $T14().CreateTranslation(0, -10, 50).MemberwiseClone(), 
-          $T14().CreateRotationY(this._camAngleVert).MemberwiseClone()
+    (this.RenderCanvas$RC$value.View = $S05().CallStatic($T15(), "op_Multiply", null, 
+        $S05().CallStatic($T15(), "op_Multiply", null, 
+          $T15().CreateTranslation(0, -10, 50).MemberwiseClone(), 
+          $T15().CreateRotationY(this._camAngleVert).MemberwiseClone()
         ).MemberwiseClone(), 
-        $T14().CreateRotationX(this._camAngleHor).MemberwiseClone()
+        $T15().CreateRotationX(this._camAngleHor).MemberwiseClone()
       ).MemberwiseClone());
     (this._sceneRenderer).Render(this.RenderCanvas$RC$value);
     this.Present();
@@ -298,7 +307,7 @@ JSIL.DeclareNamespace("Fusee.Tutorial.Core");
       this.get_Height()
     );
     var aspect = +((+(this.get_Width()) / +(this.get_Height())));
-    var projection = $T14().CreatePerspectiveFieldOfView(0.7853982, aspect, 1, 20000);
+    var projection = $T15().CreatePerspectiveFieldOfView(0.7853982, aspect, 1, 20000);
     (this.RenderCanvas$RC$value.Projection = projection.MemberwiseClone());
   }; 
 
