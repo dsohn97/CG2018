@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Fusee.Base.Common;
@@ -247,92 +247,6 @@ namespace Fusee.Tutorial.Core
         }
 
         // RenderAFrame is called once a frame
-        public override void RenderAFrame()
-        {
-
-             // Clear the backbuffer
-            RC.Clear(ClearFlags.Color | ClearFlags.Depth);
-            
-            // E Q als Speed control
-            if (  Keyboard.GetButton(81) /* Mouse.RightButton == true*/ )
-            speed -= 2; 
-            if (  Keyboard.GetButton(69) /* Mouse.RightButton == true*/ )
-            speed += 2;
-            //Speed set 
-            if (  Keyboard.GetButton(71) /* Mouse.RightButton == true*/ )
-            speed = 10; 
-            if (  Keyboard.GetButton(70) /* Mouse.RightButton == true*/ )
-            speed += 25; 
-            //Camera Distance
-       /* if(_cd >=15)
-            if ( Keyboard.GetButton(85))
-            _cd -= _cd*0.05f;
-        if(_cd <= 200)
-            if ( Keyboard.GetButton(89))
-            _cd += _cd*0.02f;
-            */
-            if (_cd >= 15 || _cd <= 200)
-            _cd = _cd + (-Mouse.WheelVel * 0.05f);
-
-            float bodyRot = _bodyTransform.Rotation.y;
-            bodyRot += 0.1f * Keyboard.ADAxis * DeltaTime * speed;
-
-
-           
-            
-            _bodyTransform.Rotation = new float3(0, bodyRot, 0);
-            float upperArm = _upperArmTransform.Rotation.x;
-            upperArm += 0.1f * (Keyboard.WSAxis) * DeltaTime * speed;
-            _upperArmTransform.Rotation = new float3(upperArm, 0, 0);
-
-            float foreArm = _foreArmTransform.Rotation.x;
-            foreArm += 0.1f * (Keyboard.LeftRightAxis) * DeltaTime * speed;
-            _foreArmTransform.Rotation = new float3(foreArm, 0, 0);
-
-            
-
-
-            //Claw
-            
-            var i = 0.2f;
-        
-           
-                
-        
-            if (_clawLeftTransform.Rotation.z >= 0.5f)
-                i = 0;
-                _clawLeftTransform.Rotation = new float3(0, 0, i * Keyboard.UpDownAxis * 0.015f * 33); 
-                _clawRightTransform.Rotation = new float3(0, 0, i * -Keyboard.UpDownAxis * 0.015f * 33);
-           
-
-             // Animate the camera angle
-             if (Mouse.LeftButton == true)
-            _camAngleVelVert = -Rotate * Mouse.XVel * DeltaTime * 0.0005f;
-            if (Mouse.RightButton == true)
-            _camAngleVelHor = -Rotate * Mouse.YVel * DeltaTime * 0.0005f;
-           
-            var slowDamp = (float)System.Math.Exp(-Damping * DeltaTime);
-                    _camAngleVelVert *= slowDamp;
-                    _camAngleVelHor *= slowDamp;
-
-            _camAngleHor += _camAngleVelHor;
-            _camAngleVert += _camAngleVelVert;
-            // Setup the camera 
-            var rot =  float4x4.CreateRotationX(_camAngleHor) * float4x4.CreateRotationY(_camAngleVert);   
-            var pos =float4x4.CreateTranslation(0, -10, _cd);
-            RC.View = pos * rot;
-
-            // Render the scene on the current render context
-            _sceneRenderer.Render(RC);
-
-            //   float speed = 3;
-            //     _bodyTransform.Rotation = new float3(0, _bodyTransform.Rotation.y + 0.03f * Mouse.XVel * Time.DeltaTime, 0);
-            //       _upperArmTransform.Rotation = new float3(_upperArmTransform.Rotation.x + speed * Keyboard.UpDownAxis * DeltaTime, 0, 0);
-            //         _foreArmTransform.Rotation = new float3( _foreArmTransform.Rotation.x + speed * Keyboard.LeftRightAxis * DeltaTime,0,0);
-
-            // Swap buffers: Show the contents of the backbuffer (containing the currently rendered farame) on the front buffer.
-            Present();
-        }
 
 
         // Is called when the window was resized
