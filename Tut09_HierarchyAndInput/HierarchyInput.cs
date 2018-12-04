@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Fusee.Base.Common;
@@ -34,6 +34,7 @@ namespace Fusee.Tutorial.Core
         private float speed = 33;
         //Camera distance from object 
         private float _cd = 50;
+
         SceneContainer CreateScene()
             {
                 // Initialize transform components that need to be changed inside "RenderAFrame"
