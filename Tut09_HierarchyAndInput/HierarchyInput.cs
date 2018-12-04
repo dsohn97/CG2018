@@ -31,6 +31,10 @@ namespace Fusee.Tutorial.Core
         private float Rotate = 7;
         private float _leftClaw = -0.1f; 
         private float _rightClaw = 0.1f;
+        private float speed = 33;
+        //Camera distance from object 
+        private float _cd = 50;
+        private float z = 0;
 
         SceneContainer CreateScene()
             {
@@ -57,7 +61,7 @@ namespace Fusee.Tutorial.Core
                 {
                     Rotation = new float3(0.8f, 0, 0),
                     Scale = new float3(1, 1, 1),
-                    Translation = new float3(-2, 8, 0)
+                    Translation = new float3(2, 8, 0)
                 };
                 
                 _clawLeftTransform = new TransformComponent
@@ -245,10 +249,28 @@ namespace Fusee.Tutorial.Core
         // RenderAFrame is called once a frame
         public override void RenderAFrame()
         {
-            float speed = 33; 
-            // Q als Speed control
+            
+            // E Q als Speed control
             if (  Keyboard.GetButton(81) /* Mouse.RightButton == true*/ )
-            speed = speed * 2; 
+            speed -= 2; 
+            if (  Keyboard.GetButton(69) /* Mouse.RightButton == true*/ )
+            speed += 2;
+            //Speed set 
+            if (  Keyboard.GetButton(71) /* Mouse.RightButton == true*/ )
+            speed = 10; 
+            if (  Keyboard.GetButton(70) /* Mouse.RightButton == true*/ )
+            speed += 25; 
+            //Camera Distance
+       /* if(_cd >=15)
+            if ( Keyboard.GetButton(85))
+            _cd -= _cd*0.05f;
+        if(_cd <= 200)
+            if ( Keyboard.GetButton(89))
+            _cd += _cd*0.02f;
+            */
+            if (_cd >= 15 || _cd <= 200)
+            _cd = _cd + (-Mouse.WheelVel * 0.05f);
+
             float bodyRot = _bodyTransform.Rotation.y;
             bodyRot += 0.1f * Keyboard.ADAxis * DeltaTime * speed;
 
@@ -264,13 +286,20 @@ namespace Fusee.Tutorial.Core
             foreArm += 0.1f * (Keyboard.LeftRightAxis) * DeltaTime * speed;
             _foreArmTransform.Rotation = new float3(foreArm, 0, 0);
 
-            //Claw
-            var i = 0.2f;
-            if (_clawLeftTransform.Rotation.z >= 0.1f)
-                i = 0;
+            
 
-                _clawLeftTransform.Rotation = new float3(0, 0, i * Keyboard.UpDownAxis * 0.015f * speed); 
-                _clawRightTransform.Rotation = new float3(0, 0, i * -Keyboard.UpDownAxis * 0.015f * speed);
+
+            //Claw
+            
+            var i = 0.2f;
+        
+           
+                
+        
+            if (_clawLeftTransform.Rotation.z >= 0.5f)
+                i = 0;
+                _clawLeftTransform.Rotation = new float3(0, 0, i * Keyboard.UpDownAxis * 0.015f * 33); 
+                _clawRightTransform.Rotation = new float3(0, 0, i * -Keyboard.UpDownAxis * 0.015f * 33);
             // Clear the backbuffer
             RC.Clear(ClearFlags.Color | ClearFlags.Depth);
 
@@ -287,7 +316,8 @@ namespace Fusee.Tutorial.Core
             _camAngleHor += _camAngleVelHor;
             _camAngleVert += _camAngleVelVert;
             // Setup the camera 
-            var rot =  float4x4.CreateRotationX(_camAngleHor) * float4x4.CreateRotationY(_camAngleVert);            var pos =float4x4.CreateTranslation(0, -10, 50);
+            var rot =  float4x4.CreateRotationX(_camAngleHor) * float4x4.CreateRotationY(_camAngleVert);   
+            var pos =float4x4.CreateTranslation(0, -10, _cd);
             RC.View = pos * rot;
 
             // Render the scene on the current render context
