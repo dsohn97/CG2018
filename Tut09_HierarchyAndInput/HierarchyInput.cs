@@ -34,7 +34,6 @@ namespace Fusee.Tutorial.Core
         private float speed = 33;
         //Camera distance from object 
         private float _cd = 50;
-        private float z = 0;
 
         SceneContainer CreateScene()
             {
