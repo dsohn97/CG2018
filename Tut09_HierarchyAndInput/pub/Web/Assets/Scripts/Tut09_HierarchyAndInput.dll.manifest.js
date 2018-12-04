@@ -10,5 +10,5 @@ var $asm03 = JSIL.GetAssembly("Fusee.Engine.Common, Version=0.7.0.0, Culture=neu
 
 if (typeof (contentManifest) !== "object") { JSIL.GlobalNamespace.contentManifest = {}; };
 contentManifest["Tut09_HierarchyAndInput.dll"] = [
-    ["Script", "Tut09_HierarchyAndInput, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null.js", { "sizeBytes": 28534 }],
+    ["Script", "Tut09_HierarchyAndInput, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null.js", { "sizeBytes": 29289 }],
 ];

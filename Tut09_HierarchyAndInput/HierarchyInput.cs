@@ -249,6 +249,9 @@ namespace Fusee.Tutorial.Core
         // RenderAFrame is called once a frame
         public override void RenderAFrame()
         {
+
+             // Clear the backbuffer
+            RC.Clear(ClearFlags.Color | ClearFlags.Depth);
             
             // E Q als Speed control
             if (  Keyboard.GetButton(81) /* Mouse.RightButton == true*/ )
@@ -300,8 +303,7 @@ namespace Fusee.Tutorial.Core
                 i = 0;
                 _clawLeftTransform.Rotation = new float3(0, 0, i * Keyboard.UpDownAxis * 0.015f * 33); 
                 _clawRightTransform.Rotation = new float3(0, 0, i * -Keyboard.UpDownAxis * 0.015f * 33);
-            // Clear the backbuffer
-            RC.Clear(ClearFlags.Color | ClearFlags.Depth);
+           
 
              // Animate the camera angle
              if (Mouse.LeftButton == true)
