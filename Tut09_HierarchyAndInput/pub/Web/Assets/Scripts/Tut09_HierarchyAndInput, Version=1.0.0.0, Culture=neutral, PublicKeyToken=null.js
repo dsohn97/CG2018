@@ -288,13 +288,12 @@ JSIL.DeclareNamespace("Fusee.Tutorial.Core");
     this._camAngleVelHor = +this._camAngleVelHor * num6;
     this._camAngleHor = +this._camAngleHor + +this._camAngleVelHor;
     this._camAngleVert = +this._camAngleVert + +this._camAngleVelVert;
-    (this.RenderCanvas$RC$value.View = $S05().CallStatic($T15(), "op_Multiply", null, 
-        $S05().CallStatic($T15(), "op_Multiply", null, 
-          $T15().CreateTranslation(0, -10, 50).MemberwiseClone(), 
-          $T15().CreateRotationY(this._camAngleVert).MemberwiseClone()
-        ).MemberwiseClone(), 
-        $T15().CreateRotationX(this._camAngleHor).MemberwiseClone()
-      ).MemberwiseClone());
+    var right = $S05().CallStatic($T15(), "op_Multiply", null, 
+      $T15().CreateRotationX(this._camAngleHor).MemberwiseClone(), 
+      $T15().CreateRotationY(this._camAngleVert).MemberwiseClone()
+    ).MemberwiseClone();
+    var left = $T15().CreateTranslation(0, -10, 50).MemberwiseClone();
+    (this.RenderCanvas$RC$value.View = $S05().CallStatic($T15(), "op_Multiply", null, left.MemberwiseClone(), right.MemberwiseClone()).MemberwiseClone());
     (this._sceneRenderer).Render(this.RenderCanvas$RC$value);
     this.Present();
   }; 
