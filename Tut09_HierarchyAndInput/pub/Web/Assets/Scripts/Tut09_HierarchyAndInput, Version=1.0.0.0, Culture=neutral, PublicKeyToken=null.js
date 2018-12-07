@@ -46,28 +46,28 @@ JSIL.DeclareNamespace("Fusee.Tutorial.Core");
     return ($T0B = JSIL.Memoize($asm04.Fusee.Engine.Core.SceneRenderer)) ();
   };
   var $T0C = function () {
-    return ($T0C = JSIL.Memoize($asm0F.System.Boolean)) ();
+    return ($T0C = JSIL.Memoize($asm03.Fusee.Engine.Common.ClearFlags)) ();
   };
   var $T0D = function () {
-    return ($T0D = JSIL.Memoize($asm04.Fusee.Engine.Core.InputDevice)) ();
+    return ($T0D = JSIL.Memoize($asm0F.System.Boolean)) ();
   };
   var $T0E = function () {
-    return ($T0E = JSIL.Memoize($asm04.Fusee.Engine.Core.Input)) ();
+    return ($T0E = JSIL.Memoize($asm04.Fusee.Engine.Core.InputDevice)) ();
   };
   var $T0F = function () {
-    return ($T0F = JSIL.Memoize($asm04.Fusee.Engine.Core.MouseDevice)) ();
+    return ($T0F = JSIL.Memoize($asm04.Fusee.Engine.Core.Input)) ();
   };
   var $T10 = function () {
-    return ($T10 = JSIL.Memoize($asm0F.System.Single)) ();
+    return ($T10 = JSIL.Memoize($asm04.Fusee.Engine.Core.MouseDevice)) ();
   };
   var $T11 = function () {
-    return ($T11 = JSIL.Memoize($asm04.Fusee.Engine.Core.KeyboardDevice)) ();
+    return ($T11 = JSIL.Memoize($asm0F.System.Single)) ();
   };
   var $T12 = function () {
-    return ($T12 = JSIL.Memoize($asm04.Fusee.Engine.Core.Time)) ();
+    return ($T12 = JSIL.Memoize($asm04.Fusee.Engine.Core.KeyboardDevice)) ();
   };
   var $T13 = function () {
-    return ($T13 = JSIL.Memoize($asm03.Fusee.Engine.Common.ClearFlags)) ();
+    return ($T13 = JSIL.Memoize($asm04.Fusee.Engine.Core.Time)) ();
   };
   var $T14 = function () {
     return ($T14 = JSIL.Memoize($asm0F.System.Math)) ();
@@ -109,7 +109,6 @@ JSIL.DeclareNamespace("Fusee.Tutorial.Core");
     this._rightClaw = 0.1;
     this.speed = 33;
     this._cd = 50;
-    this.z = 0;
     $T00().prototype._ctor.call(this);
   }; 
 
@@ -257,50 +256,50 @@ JSIL.DeclareNamespace("Fusee.Tutorial.Core");
   }; 
 
   function HierarchyInput_RenderAFrame () {
-    var button = $T0E().get_Keyboard().GetButton(81);
+    (this.RenderCanvas$RC$value).Clear($T0C().$Flags("Color", "Depth"));
+    var button = $T0F().get_Keyboard().GetButton(81);
     if (button) {
       this.speed = +this.speed - 2;
     }
-    var button2 = $T0E().get_Keyboard().GetButton(69);
+    var button2 = $T0F().get_Keyboard().GetButton(69);
     if (button2) {
       this.speed = +this.speed + 2;
     }
-    var button3 = $T0E().get_Keyboard().GetButton(71);
+    var button3 = $T0F().get_Keyboard().GetButton(71);
     if (button3) {
       this.speed = 10;
     }
-    var button4 = $T0E().get_Keyboard().GetButton(70);
+    var button4 = $T0F().get_Keyboard().GetButton(70);
     if (button4) {
       this.speed = +this.speed + 25;
     }
     if ((+this._cd >= 15) || (+this._cd <= 200)) {
-      this._cd = +this._cd + (-$T0E().get_Mouse().get_WheelVel() * 0.05);
+      this._cd = +this._cd + (-$T0F().get_Mouse().get_WheelVel() * 0.05);
     }
     var num = +this._bodyTransform.Rotation.y;
-    num += ((0.1 * +$T0E().get_Keyboard().get_ADAxis()) * +$T12().get_DeltaTime()) * +this.speed;
+    num += ((0.1 * +$T0F().get_Keyboard().get_ADAxis()) * +$T13().get_DeltaTime()) * +this.speed;
     this._bodyTransform.Rotation = $S00().Construct(0, num, 0);
     var num2 = +this._upperArmTransform.Rotation.x;
-    num2 += ((0.1 * +$T0E().get_Keyboard().get_WSAxis()) * +$T12().get_DeltaTime()) * +this.speed;
+    num2 += ((0.1 * +$T0F().get_Keyboard().get_WSAxis()) * +$T13().get_DeltaTime()) * +this.speed;
     this._upperArmTransform.Rotation = $S00().Construct(num2, 0, 0);
     var num3 = +this._foreArmTransform.Rotation.x;
-    num3 += ((0.1 * +$T0E().get_Keyboard().get_LeftRightAxis()) * +$T12().get_DeltaTime()) * +this.speed;
+    num3 += ((0.1 * +$T0F().get_Keyboard().get_LeftRightAxis()) * +$T13().get_DeltaTime()) * +this.speed;
     this._foreArmTransform.Rotation = $S00().Construct(num3, 0, 0);
     var num4 = 0.2;
     if (+this._clawLeftTransform.Rotation.z >= 0.5) {
       num4 = 0;
     }
-    this._clawLeftTransform.Rotation = $S00().Construct(0, 0, (((num4 * +$T0E().get_Keyboard().get_UpDownAxis()) * 0.015) * 33));
-    this._clawRightTransform.Rotation = $S00().Construct(0, 0, (((num4 * -$T0E().get_Keyboard().get_UpDownAxis()) * 0.015) * 33));
-    (this.RenderCanvas$RC$value).Clear($T13().$Flags("Color", "Depth"));
-    var leftButton = $T0E().get_Mouse().get_LeftButton();
+    this._clawLeftTransform.Rotation = $S00().Construct(0, 0, (((num4 * +$T0F().get_Keyboard().get_UpDownAxis()) * 0.015) * 33));
+    this._clawRightTransform.Rotation = $S00().Construct(0, 0, (((num4 * -$T0F().get_Keyboard().get_UpDownAxis()) * 0.015) * 33));
+    var leftButton = $T0F().get_Mouse().get_LeftButton();
     if (leftButton) {
-      this._camAngleVelVert = ((-this.Rotate * +$T0E().get_Mouse().get_XVel()) * +$T12().get_DeltaTime()) * 0.0005;
+      this._camAngleVelVert = ((-this.Rotate * +$T0F().get_Mouse().get_XVel()) * +$T13().get_DeltaTime()) * 0.0005;
     }
-    var rightButton = $T0E().get_Mouse().get_RightButton();
+    var rightButton = $T0F().get_Mouse().get_RightButton();
     if (rightButton) {
-      this._camAngleVelHor = ((-this.Rotate * +$T0E().get_Mouse().get_YVel()) * +$T12().get_DeltaTime()) * 0.0005;
+      this._camAngleVelHor = ((-this.Rotate * +$T0F().get_Mouse().get_YVel()) * +$T13().get_DeltaTime()) * 0.0005;
     }
-    var num5 = Math.fround($T14().Exp(-0.8 * +$T12().get_DeltaTime()));
+    var num5 = Math.fround($T14().Exp(-0.8 * +$T13().get_DeltaTime()));
     this._camAngleVelVert = +this._camAngleVelVert * num5;
     this._camAngleVelHor = +this._camAngleVelHor * num5;
     this._camAngleHor = +this._camAngleHor + +this._camAngleVelHor;
@@ -396,8 +395,6 @@ JSIL.DeclareNamespace("Fusee.Tutorial.Core");
     $.Field({Static:false, Public:false}, "speed", $.Single);
 
     $.Field({Static:false, Public:false}, "_cd", $.Single);
-
-    $.Field({Static:false, Public:false}, "z", $.Single);
 
 
     return function (newThisType) { $thisType = newThisType; }; 
