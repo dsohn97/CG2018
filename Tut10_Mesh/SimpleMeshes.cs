@@ -141,22 +141,22 @@ namespace Fusee.Tutorial.Core
 
         public static Mesh CreateCylinder(float radius, float height, int segments)
         {
-            float3[] verts = new float3[segments+1];
+            float3[] vertices = new float3[segments+1];
             float3[] norms = new float3[segments+1];
             ushort[] tris  = new ushort[segments * 3];
 
             float delta = 2 * M.Pi / segments;
 
-            verts[segments] = float3.Zero;
-            norms[segments] = float3.UnitY;
+            vertices[segments] = float3.Zero;
+            norms[segments] = float3.yAxis;
 
-            verts[0] = new float3(radius, 0, 0);
-            norms[0] = float3.UnitY;
+            vertices[0] = new float3(radius, 0, 0);
+            norms[0] = float3.yAxis;
 
             for (int i = 1; i < segments; i++)
             {
-                verts[i] = new float3(radius * M.Cos(i * delta), 0, radius * M.Sin(i * delta));
-                norms[i] = float3.UnitY;
+                vertices[i] = new float3(radius * M.Cos(i * delta), 0, radius * M.Sin(i * delta));
+                norms[i] = float3.yAxis;
 
                 tris[3*i - 1] = (ushort) segments; // center
                 tris[3*i - 2] = (ushort) i;        // current point
@@ -169,7 +169,7 @@ namespace Fusee.Tutorial.Core
 
             return new Mesh
             {
-                Vertices = verts,
+                Vertices = vertices,
                 Normals = norms,
                 Triangles = tris,
             };
