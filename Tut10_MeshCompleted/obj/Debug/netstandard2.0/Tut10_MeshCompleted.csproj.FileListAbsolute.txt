@@ -1,0 +1,10 @@
+I:\Dokumente\CG\RTRFusee\CG2018\Tut10_MeshCompleted\bin\Debug\netstandard2.0\Assets\AboutFuseeAssets.txt
+I:\Dokumente\CG\RTRFusee\CG2018\Tut10_MeshCompleted\bin\Debug\netstandard2.0\Tut10_MeshCompleted.deps.json
+I:\Dokumente\CG\RTRFusee\CG2018\Tut10_MeshCompleted\bin\Debug\netstandard2.0\Tut10_MeshCompleted.dll
+I:\Dokumente\CG\RTRFusee\CG2018\Tut10_MeshCompleted\bin\Debug\netstandard2.0\Tut10_MeshCompleted.pdb
+I:\Dokumente\CG\RTRFusee\CG2018\Tut10_MeshCompleted\obj\Debug\netstandard2.0\Tut10_MeshCompleted.csprojAssemblyReference.cache
+I:\Dokumente\CG\RTRFusee\CG2018\Tut10_MeshCompleted\obj\Debug\netstandard2.0\Tut10_MeshCompleted.csproj.CoreCompileInputs.cache
+I:\Dokumente\CG\RTRFusee\CG2018\Tut10_MeshCompleted\obj\Debug\netstandard2.0\Tut10_MeshCompleted.AssemblyInfoInputs.cache
+I:\Dokumente\CG\RTRFusee\CG2018\Tut10_MeshCompleted\obj\Debug\netstandard2.0\Tut10_MeshCompleted.AssemblyInfo.cs
+I:\Dokumente\CG\RTRFusee\CG2018\Tut10_MeshCompleted\obj\Debug\netstandard2.0\Tut10_MeshCompleted.dll
+I:\Dokumente\CG\RTRFusee\CG2018\Tut10_MeshCompleted\obj\Debug\netstandard2.0\Tut10_MeshCompleted.pdb

@@ -19,7 +19,7 @@ namespace Fusee.Tutorial.Core
         private SceneContainer _scene;
         private SceneRenderer _sceneRenderer;
         private TransformComponent _baseTransform;
-        private TransformComponent _cubeShader;
+        
 
         SceneContainer CreateScene()
         {
@@ -44,10 +44,10 @@ namespace Fusee.Tutorial.Core
                             _baseTransform,
 
                             // MATERIAL COMPONENT
-                             _cubeShader = new ShaderEffectComponent
-                                { 
-                                    Effect = SimpleMeshes.MakeShaderEffect(new float3 (0.7f, 0.7f, 0.7f), new float3 (1, 1, 1),  5)
-                                },
+                             new ShaderEffectComponent
+                            {
+                                Effect = SimpleMeshes.MakeShaderEffect(new float3(0.7f, 0.7f, 0.7f), new float3(1, 1, 1), 5)
+                            },
                         
 
                             // MESH COMPONENT
