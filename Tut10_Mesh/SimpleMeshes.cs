@@ -163,7 +163,6 @@ namespace Fusee.Tutorial.Core
                 tris[3*i - 3] = (ushort) (i-1);    // last point
             }
 
-            // Stitch the last segment
             tris[3 * segments - 1] = (ushort)segments;    
             tris[3 * segments - 2] = (ushort)0;          
             tris[3 * segments - 3] = (ushort)(segments - 1);    
