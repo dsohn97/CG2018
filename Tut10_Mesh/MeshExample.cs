@@ -34,7 +34,7 @@ namespace Fusee.Tutorial.Core
             // Setup the scene graph
             return new SceneContainer
             {
-                Children = new List<SceneNodeContainer>
+                 Children = new List<SceneNodeContainer>
                 {
                     new SceneNodeContainer
                     {
@@ -51,7 +51,7 @@ namespace Fusee.Tutorial.Core
                         
 
                             // MESH COMPONENT
-                            SimpleMeshes.CreateCuboid(new float3(10, 10, 10))
+                            SimpleMeshes.CreateCylinder(5,15,3)
                         }
                     },
                 }
