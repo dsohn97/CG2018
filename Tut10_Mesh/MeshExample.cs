@@ -19,6 +19,7 @@ namespace Fusee.Tutorial.Core
         private SceneContainer _scene;
         private SceneRenderer _sceneRenderer;
         private TransformComponent _baseTransform;
+        private TransformComponent _cubeShader;
 
         SceneContainer CreateScene()
         {
@@ -43,11 +44,11 @@ namespace Fusee.Tutorial.Core
                             _baseTransform,
 
                             // MATERIAL COMPONENT
-                            new MaterialComponent
-                            {
-                                Diffuse = new MatChannelContainer { Color = new float3(0.7f, 0.7f, 0.7f) },
-                                Specular = new SpecularChannelContainer { Color = new float3(1, 1, 1), Shininess = 5 }
-                            },
+                             _cubeShader = new ShaderEffectComponent
+                                { 
+                                    Effect = SimpleMeshes.MakeShaderEffect(new float3 (0.7f, 0.7f, 0.7f), new float3 (1, 1, 1),  5)
+                                },
+                        
 
                             // MESH COMPONENT
                             SimpleMeshes.CreateCuboid(new float3(10, 10, 10))
