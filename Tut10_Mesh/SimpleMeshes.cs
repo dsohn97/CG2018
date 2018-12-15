@@ -148,15 +148,15 @@ namespace Fusee.Tutorial.Core
             float delta = 2 * M.Pi / segments;
 
             vertices[segments] = float3.Zero;
-            normals[segments] = float3.yAxis;
+            normals[segments] = float3.UnitY;
 
             vertices[0] = new float3(radius, 0, 0);
-            normals[0] = float3.yAxis;
+            normals[0] = float3.UnitY;
 
             for (int i = 1; i < segments; i++)
             {
                 vertices[i] = new float3(radius * M.Cos(i * delta), 0, radius * M.Sin(i * delta));
-                normals[i] = float3.yAxis;
+                normals[i] = float3.UnitY;
 
                 tris[3*i - 1] = (ushort) segments; // center
                 tris[3*i - 2] = (ushort) i;        // current point
