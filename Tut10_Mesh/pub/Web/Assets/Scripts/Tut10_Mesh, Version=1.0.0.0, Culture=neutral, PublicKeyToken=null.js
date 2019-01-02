@@ -113,7 +113,7 @@ JSIL.DeclareNamespace("Fusee.Tutorial.Core");
     var expr_84 = new ($T07())();
     expr_84.ShaderEffectComponent$Effect$value = $T08().MakeShaderEffect($S00().Construct(0.7, 0.7, 0.7), $S00().Construct(1, 1, 1), 5);
     expr_71.Add(expr_84);
-    expr_71.Add($T08().CreateCylinder(5, 15, 8));
+    expr_71.Add($T08().CreateCylinder(5, 5, 8));
     expr_6B.Components = expr_71;
     expr_65.Add(expr_6B);
     expr_5F.Children = expr_65;
@@ -417,14 +417,22 @@ JSIL.DeclareNamespace("Fusee.Tutorial.Core");
       array3[((Math.imul(3, i) - 2) | 0)] = (i & 0xFFFF);
       array3[((Math.imul(3, i) - 3) | 0)] = (((i - 1) | 0) & 0xFFFF);
     }
+
+    for (var j = 1; j < (segments | 0); j = ((j + 1) | 0)) {
+      array[j] = $S01().Construct((+radius * +$T0A().Cos(+j * num)), height, (+radius * +$T0A().Sin(+j * num)));
+      array2[j] = $T03().UnitY.MemberwiseClone();
+      array3[((Math.imul(3, j) - 1) | 0)] = (segments & 0xFFFF);
+      array3[((Math.imul(3, j) - 2) | 0)] = (j & 0xFFFF);
+      array3[((Math.imul(3, j) - 3) | 0)] = (((j - 1) | 0) & 0xFFFF);
+    }
     array3[((Math.imul(3, segments) - 1) | 0)] = (segments & 0xFFFF);
     array3[((Math.imul(3, segments) - 2) | 0)] = 0;
     array3[((Math.imul(3, segments) - 3) | 0)] = ((((segments | 0) - 1) | 0) & 0xFFFF);
-    var expr_F2 = new ($T04())();
-    expr_F2.set_Vertices(array);
-    expr_F2.set_Normals(array2);
-    expr_F2.set_Triangles(array3);
-    return expr_F2;
+    var expr_15F = new ($T04())();
+    expr_15F.set_Vertices(array);
+    expr_15F.set_Normals(array2);
+    expr_15F.set_Triangles(array3);
+    return expr_15F;
   }; 
 
   function SimpleMeshes_CreatePyramid (baselen, height) {

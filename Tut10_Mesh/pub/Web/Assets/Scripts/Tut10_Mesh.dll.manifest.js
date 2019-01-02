@@ -10,5 +10,5 @@ var $asm03 = JSIL.GetAssembly("Fusee.Engine.Common, Version=0.7.0.0, Culture=neu
 
 if (typeof (contentManifest) !== "object") { JSIL.GlobalNamespace.contentManifest = {}; };
 contentManifest["Tut10_Mesh.dll"] = [
-    ["Script", "Tut10_Mesh, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null.js", { "sizeBytes": 21033 }],
+    ["Script", "Tut10_Mesh, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null.js", { "sizeBytes": 21469 }],
 ];

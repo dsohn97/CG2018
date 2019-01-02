@@ -139,38 +139,103 @@ namespace Fusee.Tutorial.Core
             return ShaderCodeBuilder.MakeShaderEffectFromMatComp(temp);
         }
 
-        public static Mesh CreateCylinder(float radius, float height, int segments)
+         public static Mesh CreateCylinder(float radius, float height, int segments)
         {
-            float3[] vertices = new float3[segments+1];
-            float3[] normals = new float3[segments+1];
-            ushort[] tris  = new ushort[segments * 3];
+            float3[] verts = new float3[4 * segments + 2];
+            float3[] norms = new float3[4 * segments + 2];
+            ushort[] tris  = new ushort[4 * segments * 3];
 
             float delta = 2 * M.Pi / segments;
+            //Startpunkte
+            // S und E oben
+            verts[0] = new float3(radius, 0.5f * height, 0);
+            norms[0] = new float3(1, 0.5f * height, 0);
 
-            vertices[segments] = float3.Zero;
-            normals[segments] = float3.UnitY;
+            verts[1] = new float3(radius, 0.5f * height, 0);
+            norms[1] = new float3(1, 0, 0);
 
-            vertices[0] = new float3(radius, 0, 0);
-            normals[0] = float3.UnitY;
+            // S und E unten
+            verts[2] = new float3(radius, -0.5f * height, 0);
+            norms[2] = new float3(1, 0, 0);
+
+            verts[3] = new float3(radius, -0.5f * height, 0);
+            norms[3] = new float3(1, -0.5f * height, 0);
+
+            // M oben
+            verts[4 * segments] = new float3(0, 0.5f * height, 0);
+            norms[4 * segments] = new float3(0, 0.5f * height, 0);  
+
+            // M unten
+            verts[4 * segments + 1] = new float3(0, -0.5f * height, 0);
+            norms[4 * segments + 1] = new float3(0, -0.5f * height, 0);  
+            
+            //Flächen
 
             for (int i = 1; i < segments; i++)
             {
-                vertices[i] = new float3(radius * M.Cos(i * delta), 0, radius * M.Sin(i * delta));
-                normals[i] = float3.UnitY;
+                // Deckfläche oben
+                verts[4 * i] = new float3(radius * M.Cos(i * delta), 0.5f * height, radius * M.Sin(i * delta));
+                norms[4 * i] = new float3(M.Cos(i * delta), 0.5f * height, M.Sin(i * delta));  
 
-                tris[3*i - 1] = (ushort) segments; // center
-                tris[3*i - 2] = (ushort) i;        // current point
-                tris[3*i - 3] = (ushort) (i-1);    // last point
+                // Mantelrand oben
+                verts[4 * i + 1] = new float3(radius * M.Cos(i * delta), 0.5f * height, radius * M.Sin(i * delta));
+                norms[4 * i + 1] = new float3(M.Cos(i * delta), 0, M.Sin(i * delta));
+
+                // Mantelrand unten
+                verts[4 * i + 2] = new float3(radius * M.Cos(i * delta), -0.5f * height, radius * M.Sin(i * delta));
+                norms[4 * i + 2] = new float3(M.Cos(i * delta), 0, M.Sin(i * delta));
+
+                // Deckfläche unten
+                verts[4 * i + 3] = new float3(radius * M.Cos(i * delta), -0.5f * height, radius * M.Sin(i * delta));
+                norms[4 * i + 3] = new float3(M.Cos(i * delta), -0.5f * height, M.Sin(i * delta));
+
+                // Dreieck oben
+                tris[12 * (i - 1) + 0] = (ushort) (4 * segments);       // top center point
+                tris[12 * (i - 1) + 1] = (ushort) (4 * (i - 1) + 0);    // current top segment point
+                tris[12 * (i - 1) + 2] = (ushort) (4 * i + 0);          // previous top segment point
+
+                // Mantel Dreieck unten
+                tris[12 * (i - 1) + 3] = (ushort) (4 * (i - 1) + 2);    // previous lower shell point
+                tris[12 * (i - 1) + 4] = (ushort) (4 * i + 2);          // current lower shell point
+                tris[12 * (i - 1) + 5] = (ushort) (4 * i + 1);          // current top shell point
+
+                // Mantel Dreieck oben
+                tris[12 * (i - 1) + 6] = (ushort) (4 * (i - 1) + 2);    // previous lower shell point
+                tris[12 * (i - 1) + 7] = (ushort) (4 * i + 1);          // current top shell point
+                tris[12 * (i - 1) + 8] = (ushort) (4 * (i - 1) + 1);    // previous top shell point
+
+                // Dreieck unten
+                tris[12 * (i - 1) + 9]  = (ushort) (4 * segments + 1);  // bottom center point
+                tris[12 * (i - 1) + 10] = (ushort) (4 * (i - 1) + 3);   // current bottom segment point
+                tris[12 * (i - 1) + 11] = (ushort) (4 * i + 3);         // previous bottom segment point
             }
 
-            tris[3 * segments - 1] = (ushort)segments;    
-            tris[3 * segments - 2] = (ushort)0;          
-            tris[3 * segments - 3] = (ushort)(segments - 1);    
+            //letzte Flächen
+
+            // oben
+            tris[12 * segments - 12] = (ushort) (4 * segments);             // top center point
+            tris[12 * segments - 11] = (ushort) (4 * (segments - 1));       // current top segment point
+            tris[12 * segments - 10] = (ushort) (0);                        // previous top segment point
+
+            // Rand unten
+            tris[12 * segments - 9] = (ushort) (4 * (segments - 1) + 2);    // previous lower shell point
+            tris[12 * segments - 8] = (ushort) (2);                         // current lower shell point
+            tris[12 * segments - 7] = (ushort) (1);                         // current top shell point
+
+            // Rand oben
+            tris[12 * segments - 6] = (ushort) (4 * (segments - 1) + 2);    // previous lower shell point
+            tris[12 * segments - 5] = (ushort) (1);                         // current top shell point
+            tris[12 * segments - 4] = (ushort) (4 * (segments - 1) + 1);    // previous top shell point
+
+            // unten
+            tris[12 * segments - 3] = (ushort) (4 * segments + 1);          // bottom center point
+            tris[12 * segments - 2] = (ushort) (4 * (segments - 1) + 3);    // current bottom segment point
+            tris[12 * segments - 1] = (ushort) (3);                         // previous bottom segment point
 
             return new Mesh
             {
-                Vertices = vertices,
-                Normals = normals,
+                Vertices = verts,
+                Normals = norms,
                 Triangles = tris,
             };
         }
