@@ -141,7 +141,9 @@ namespace Fusee.Tutorial.Core
                     }
                     _currentPick = newPick;
                 }
-                 if(_currentPick?.Node.Name=="Tower"){
+              
+            }
+               if(_currentPick?.Node.Name=="Tower"){
 
                     float p_RotTow = _towerTransform.Rotation.y;
                     p_RotTow = p_RotTow += 2 * DeltaTime * Keyboard.ADAxis;
@@ -177,7 +179,6 @@ namespace Fusee.Tutorial.Core
                     _leftFrontTransform.Rotation = new float3(0, six, 0);
                   
 
-            }
             }
             // Render the scene on the current render context
             _sceneRenderer.Render(RC);
