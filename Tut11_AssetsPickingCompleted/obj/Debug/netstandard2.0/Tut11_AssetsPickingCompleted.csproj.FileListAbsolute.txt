@@ -1,0 +1,11 @@
+I:\Dokumente\CG\RTRFusee\CG2018\Tut11_AssetsPickingCompleted\bin\Debug\netstandard2.0\Assets\AboutFuseeAssets.txt
+I:\Dokumente\CG\RTRFusee\CG2018\Tut11_AssetsPickingCompleted\bin\Debug\netstandard2.0\Assets\tank.fus
+I:\Dokumente\CG\RTRFusee\CG2018\Tut11_AssetsPickingCompleted\bin\Debug\netstandard2.0\Tut11_AssetsPickingCompleted.deps.json
+I:\Dokumente\CG\RTRFusee\CG2018\Tut11_AssetsPickingCompleted\bin\Debug\netstandard2.0\Tut11_AssetsPickingCompleted.dll
+I:\Dokumente\CG\RTRFusee\CG2018\Tut11_AssetsPickingCompleted\bin\Debug\netstandard2.0\Tut11_AssetsPickingCompleted.pdb
+I:\Dokumente\CG\RTRFusee\CG2018\Tut11_AssetsPickingCompleted\obj\Debug\netstandard2.0\Tut11_AssetsPickingCompleted.csprojAssemblyReference.cache
+I:\Dokumente\CG\RTRFusee\CG2018\Tut11_AssetsPickingCompleted\obj\Debug\netstandard2.0\Tut11_AssetsPickingCompleted.csproj.CoreCompileInputs.cache
+I:\Dokumente\CG\RTRFusee\CG2018\Tut11_AssetsPickingCompleted\obj\Debug\netstandard2.0\Tut11_AssetsPickingCompleted.AssemblyInfoInputs.cache
+I:\Dokumente\CG\RTRFusee\CG2018\Tut11_AssetsPickingCompleted\obj\Debug\netstandard2.0\Tut11_AssetsPickingCompleted.AssemblyInfo.cs
+I:\Dokumente\CG\RTRFusee\CG2018\Tut11_AssetsPickingCompleted\obj\Debug\netstandard2.0\Tut11_AssetsPickingCompleted.dll
+I:\Dokumente\CG\RTRFusee\CG2018\Tut11_AssetsPickingCompleted\obj\Debug\netstandard2.0\Tut11_AssetsPickingCompleted.pdb

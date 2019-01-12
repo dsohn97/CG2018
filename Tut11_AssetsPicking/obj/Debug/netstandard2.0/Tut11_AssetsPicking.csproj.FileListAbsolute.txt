@@ -1,0 +1,11 @@
+I:\Dokumente\CG\RTRFusee\CG2018\Tut11_AssetsPicking\bin\Debug\netstandard2.0\Assets\AboutFuseeAssets.txt
+I:\Dokumente\CG\RTRFusee\CG2018\Tut11_AssetsPicking\bin\Debug\netstandard2.0\Assets\tank.fus
+I:\Dokumente\CG\RTRFusee\CG2018\Tut11_AssetsPicking\bin\Debug\netstandard2.0\Tut11_AssetsPicking.deps.json
+I:\Dokumente\CG\RTRFusee\CG2018\Tut11_AssetsPicking\bin\Debug\netstandard2.0\Tut11_AssetsPicking.dll
+I:\Dokumente\CG\RTRFusee\CG2018\Tut11_AssetsPicking\bin\Debug\netstandard2.0\Tut11_AssetsPicking.pdb
+I:\Dokumente\CG\RTRFusee\CG2018\Tut11_AssetsPicking\obj\Debug\netstandard2.0\Tut11_AssetsPicking.csprojAssemblyReference.cache
+I:\Dokumente\CG\RTRFusee\CG2018\Tut11_AssetsPicking\obj\Debug\netstandard2.0\Tut11_AssetsPicking.csproj.CoreCompileInputs.cache
+I:\Dokumente\CG\RTRFusee\CG2018\Tut11_AssetsPicking\obj\Debug\netstandard2.0\Tut11_AssetsPicking.AssemblyInfoInputs.cache
+I:\Dokumente\CG\RTRFusee\CG2018\Tut11_AssetsPicking\obj\Debug\netstandard2.0\Tut11_AssetsPicking.AssemblyInfo.cs
+I:\Dokumente\CG\RTRFusee\CG2018\Tut11_AssetsPicking\obj\Debug\netstandard2.0\Tut11_AssetsPicking.dll
+I:\Dokumente\CG\RTRFusee\CG2018\Tut11_AssetsPicking\obj\Debug\netstandard2.0\Tut11_AssetsPicking.pdb
