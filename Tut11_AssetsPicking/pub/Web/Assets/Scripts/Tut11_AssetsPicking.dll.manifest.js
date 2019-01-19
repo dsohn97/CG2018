@@ -13,5 +13,5 @@ var $asm03 = JSIL.GetAssembly("Fusee.Engine.Common, Version=0.7.0.0, Culture=neu
 
 if (typeof (contentManifest) !== "object") { JSIL.GlobalNamespace.contentManifest = {}; };
 contentManifest["Tut11_AssetsPicking.dll"] = [
-    ["Script", "Tut11_AssetsPicking, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null.js", { "sizeBytes": 43782 }],
+    ["Script", "Tut11_AssetsPicking, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null.js", { "sizeBytes": 40003 }],
 ];
